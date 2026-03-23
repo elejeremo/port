@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import profile from './img/profile.jpg';
-import LHP from './img/LHP-03.png';
+import LHP from './img/LHP-10.png';
 import LS from './img/Comp-1_2.gif';
 import './App.css';
 
