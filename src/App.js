@@ -2,9 +2,16 @@ import React, { useState, useEffect } from 'react';
 import profile from './img/profile.jpg';
 import LHP from './img/LHP-10.png';
 import LS from './img/Comp-1_2.gif';
+import Mountain from './img/1K3A3621.jpg';
+import Mountain1 from './img/1K3A2741.jpg';
+import Mountain2 from './img/1K3A5330.jpg';
+import Mountain3 from './img/1K3A2934.jpg';
+import Mountain4 from './img/1K3A6220.jpg';
+import Mountain5 from './img/1K3A6088.jpg';
+
 import './App.css';
 
-// ─── Navigation ──────────────────────────────────────────────────────────────
+// ─── Navigation ───────────────────────────────────────────────────────────────
 const Navigation = ({ isScrolled }) => {
   const navStyle = {
     position: 'fixed',
@@ -97,22 +104,28 @@ const ProjectCard = ({ project }) => {
 
 // ─── ProjectsSection ──────────────────────────────────────────────────────────
 const ProjectsSection = ({ projects }) => {
+  const [activeFilter, setActiveFilter] = useState('All');
+ 
+  const filtered = activeFilter === 'All'
+    ? projects
+    : projects.filter(p => p.category === activeFilter);
+ 
   return (
     <section id="work" className="projects-section">
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&family=Poppins:wght@300;400;500&display=swap');
-
+ 
         .projects-section {
           padding: 80px 0 100px;
           background: #fff;
         }
-
+ 
         .projects-section__header {
           max-width: 1200px;
-          margin: 0 auto 56px;
+          margin: 0 auto 40px;
           padding: 0 32px;
         }
-
+ 
         .projects-section__label {
           font-size: 11px;
           letter-spacing: 0.18em;
@@ -122,7 +135,7 @@ const ProjectsSection = ({ projects }) => {
           font-weight: 500;
           margin-bottom: 12px;
         }
-
+ 
         .projects-section__title {
           font-family: 'Playfair Display', Georgia, serif;
           font-size: clamp(2rem, 4vw, 3rem);
@@ -131,7 +144,42 @@ const ProjectsSection = ({ projects }) => {
           line-height: 1.15;
           margin: 0;
         }
-
+ 
+        /* ── Filter Bar ── */
+        .filter-bar {
+          max-width: 1200px;
+          margin: 0 auto 48px;
+          padding: 0 32px;
+          display: flex;
+          gap: 8px;
+        }
+ 
+        .filter-bubble {
+          padding: 8px 20px;
+          border-radius: 999px;
+          border: 1.5px solid #ddd;
+          background: transparent;
+          font-size: 13px;
+          font-family: 'Poppins', sans-serif;
+          font-weight: 500;
+          color: #888;
+          cursor: pointer;
+          transition: all 0.2s ease;
+          line-height: 1;
+        }
+ 
+        .filter-bubble:hover {
+          border-color: #111;
+          color: #111;
+        }
+ 
+        .filter-bubble.active {
+          background: #111;
+          border-color: #111;
+          color: #fff;
+        }
+ 
+        /* ── Grid ── */
         .projects-grid {
           max-width: 1200px;
           margin: 0 auto;
@@ -141,17 +189,17 @@ const ProjectsSection = ({ projects }) => {
           gap: 24px;
           align-items: start;
         }
-
+ 
         .projects-grid .project-card:nth-child(1) { grid-column: span 7; }
         .projects-grid .project-card:nth-child(2) { grid-column: span 5; margin-top: 80px; }
         .projects-grid .project-card:nth-child(3) { grid-column: span 4; }
         .projects-grid .project-card:nth-child(4) { grid-column: span 8; margin-top: -40px; }
-
+ 
         .project-card {
           display: block;
           cursor: pointer;
         }
-
+ 
         .project-card__image-wrap {
           width: 100%;
           border-radius: 12px;
@@ -159,30 +207,33 @@ const ProjectsSection = ({ projects }) => {
           background: #f0efec;
           aspect-ratio: 4 / 3;
           position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
-
+ 
         .project-card__image {
           width: 100%;
           height: 100%;
-          object-fit: cover;
+          object-fit: contain;
           display: block;
           transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
         }
-
+ 
         .project-card:hover .project-card__image {
           transform: scale(1.04);
         }
-
+ 
         .project-card__placeholder {
           width: 100%;
           height: 100%;
           background: linear-gradient(135deg, #e8e5e0 0%, #d8d4ce 100%);
         }
-
+ 
         .project-card__meta {
           padding: 16px 2px 0;
         }
-
+ 
         .project-card__category {
           font-size: 10px;
           letter-spacing: 0.15em;
@@ -191,7 +242,7 @@ const ProjectsSection = ({ projects }) => {
           font-family: 'Poppins', sans-serif;
           font-weight: 500;
         }
-
+ 
         .project-card__title {
           font-family: 'Poppins', sans-serif;
           font-size: 15px;
@@ -200,7 +251,7 @@ const ProjectsSection = ({ projects }) => {
           line-height: 1.4;
           margin: 6px 0 0;
         }
-
+ 
         .project-card__subtitle {
           font-family: 'Poppins', sans-serif;
           font-size: 13px;
@@ -208,7 +259,7 @@ const ProjectsSection = ({ projects }) => {
           font-weight: 400;
           margin: 2px 0 0;
         }
-
+ 
         @media (max-width: 900px) {
           .projects-grid { grid-template-columns: repeat(2, 1fr); }
           .projects-grid .project-card:nth-child(n) {
@@ -216,26 +267,217 @@ const ProjectsSection = ({ projects }) => {
             margin-top: 0;
           }
         }
-
+ 
         @media (max-width: 560px) {
           .projects-grid { grid-template-columns: 1fr; }
           .projects-grid .project-card:nth-child(n) { grid-column: span 1; }
         }
       `}</style>
-
+ 
       <div className="projects-section__header">
         <p className="projects-section__label">Selected Work</p>
         <h2 className="projects-section__title">Projects</h2>
       </div>
-
+ 
+      <div className="filter-bar">
+        {['All', 'Design', 'Illustration'].map(f => (
+          <button
+            key={f}
+            className={`filter-bubble${activeFilter === f ? ' active' : ''}`}
+            onClick={() => setActiveFilter(f)}
+          >
+            {f}
+          </button>
+        ))}
+      </div>
+ 
       <div className="projects-grid">
-        {projects.map((project) => (
+        {filtered.map((project) => (
           <ProjectCard key={project.id} project={project} />
         ))}
       </div>
     </section>
   );
 };
+
+const PhotographySection = () => {
+  const photos = [
+    // Replace src values with your imported images, e.g. src: Photo1
+    // 'span' controls how many rows a tall image takes up — use 2 for portrait shots
+    { id: 1, src: Mountain, title: 'Boat',  location: 'Japan',    span: 2 },
+    { id: 2, src: Mountain1, title: 'Rose',   location: '1.2816° N, 103.8636° E', span: 2 },
+    { id: 3, src: Mountain5, title: 'Hedysaroides', location: 'Home',    span: 2 },
+    { id: 4, src: Mountain3, title: 'Open road',       location: 'Iceland',  span: 2 },
+    { id: 5, src: Mountain4, title: 'Ocean still',     location: 'Bali',     span: 2 },
+    { id: 6, src: Mountain2 , title: 'Bloom',           location: 'Taiwan',   span: 2 },
+  ];
+ 
+  return (
+    <section id="photography">
+      <style>{`
+        .photo-section {
+          padding: 80px 0 100px;
+          background: #fff;
+        }
+ 
+        .photo-section__header {
+          max-width: 1200px;
+          margin: 0 auto 40px;
+          padding: 0 32px;
+        }
+ 
+        .photo-section__label {
+          font-size: 11px;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          color: #999;
+          font-family: 'Poppins', sans-serif;
+          font-weight: 500;
+          margin-bottom: 12px;
+        }
+ 
+        .photo-section__title {
+          font-family: 'Playfair Display', Georgia, serif;
+          font-size: clamp(2rem, 4vw, 3rem);
+          font-weight: 400;
+          color: #111;
+          line-height: 1.15;
+          margin: 0;
+        }
+ 
+        /* ── Masonry grid ── */
+        .masonry {
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 0 32px;
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          grid-auto-rows: 220px;
+          gap: 16px;
+        }
+ 
+        .masonry__item {
+          border-radius: 12px;
+          overflow: hidden;
+          position: relative;
+          cursor: pointer;
+          background: #f0efec;
+        }
+ 
+        /* Portrait shots span 2 row units */
+        .masonry__item--tall {
+          grid-row: span 2;
+        }
+ 
+        .masonry__item img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          display: block;
+          transition: transform 0.55s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+ 
+        .masonry__item:hover img {
+          transform: scale(1.04);
+        }
+ 
+        /* Hover overlay with caption */
+        .masonry__overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to top, rgba(0,0,0,0.48) 0%, transparent 50%);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+          display: flex;
+          align-items: flex-end;
+          padding: 16px;
+        }
+ 
+        .masonry__item:hover .masonry__overlay {
+          opacity: 1;
+        }
+ 
+        .masonry__caption {
+          color: #fff;
+        }
+ 
+        .masonry__caption-title {
+          font-family: 'Poppins', sans-serif;
+          font-size: 14px;
+          font-weight: 500;
+          line-height: 1.3;
+          margin: 0 0 2px;
+        }
+ 
+        .masonry__caption-location {
+          font-family: 'Poppins', sans-serif;
+          font-size: 11px;
+          font-weight: 400;
+          opacity: 0.75;
+          margin: 0;
+        }
+ 
+        /* Placeholder shown when src is null */
+        .masonry__placeholder {
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(135deg, #e8e5e0 0%, #d8d4ce 100%);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-family: 'Poppins', sans-serif;
+          font-size: 12px;
+          color: #aaa;
+        }
+ 
+        @media (max-width: 900px) {
+          .masonry {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+ 
+        @media (max-width: 560px) {
+          .masonry {
+            grid-template-columns: 1fr;
+          }
+          .masonry__item--tall {
+            grid-row: span 1;
+          }
+        }
+      `}</style>
+ 
+      <div className="photo-section">
+        <div className="photo-section__header">
+          <p className="photo-section__label">Photography</p>
+          <h2 className="photo-section__title">Through the lens</h2>
+        </div>
+ 
+        <div className="masonry">
+          {photos.map((photo) => (
+            <div
+              key={photo.id}
+              className={`masonry__item${photo.span === 2 ? ' masonry__item--tall' : ''}`}
+            >
+              {photo.src ? (
+                <img src={photo.src} alt={photo.title} />
+              ) : (
+                <div className="masonry__placeholder">{photo.title}</div>
+              )}
+              <div className="masonry__overlay">
+                <div className="masonry__caption">
+                  <p className="masonry__caption-title">{photo.title}</p>
+                  <p className="masonry__caption-location">{photo.location}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+ 
+
 
 // ─── AboutSection ─────────────────────────────────────────────────────────────
 const AboutSection = () => {
@@ -395,7 +637,7 @@ const Portfolio = () => {
       behance: 'https://www.behance.net/gallery/227647001/Lantern-Hill-Press-Visual-Identity-%28Brief-Club%29',
       description: "Complete visual identity design for a publishing house, including logo, typography, and brand guidelines.",
       tags: ["Branding", "Visual Identity", "Print Design"],
-      category: "Visual Identity"
+      category: "Design"
     },
     {
       id: 2,
@@ -405,26 +647,10 @@ const Portfolio = () => {
       behance: 'https://www.behance.net/gallery/224758193/Lionshrooms-Mushroom-Jerky-Visual-Identity',
       description: "Organic and earthy brand identity for a sustainable mushroom jerky company.",
       tags: ["Branding", "Packaging", "Sustainability"],
-      category: "Visual Identity"
-    },
-    {
-      id: 3,
-      title: "Modern Architecture Firm",
-      subtitle: "Brand Identity",
-      main_img_src: null,
-      description: "Clean and minimalist brand identity for a contemporary architecture firm.",
-      tags: ["Architecture", "Branding", "Minimalism"],
-      category: "Visual Identity"
-    },
-    {
-      id: 4,
-      title: "Artisan Coffee Roasters",
-      subtitle: "Packaging Design",
-      main_img_src: null,
-      description: "Packaging design series for a specialty coffee roaster.",
-      tags: ["Packaging", "Illustration", "Coffee"],
-      category: "Packaging"
+      category: "Design"
     }
+    
+  
   ]);
 
   const [isScrolled, setIsScrolled] = useState(false);
@@ -459,8 +685,9 @@ const Portfolio = () => {
       <style>{globalStyles}</style>
       <div className="test">
         <Navigation isScrolled={isScrolled} />
-        <AboutSection />
+        <PhotographySection />
         <ProjectsSection projects={projects} />
+        <AboutSection />
         <ContactSection />
       </div>
     </>
