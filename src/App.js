@@ -107,10 +107,7 @@ const PhotographyGrid = () => {
   const photos = [
     { id: 1, src: Mountain,  title: 'Boat',           location: 'Japan',                   span: 2 },
     { id: 2, src: Mountain1, title: 'Rose',            location: '1.2816° N, 103.8636° E', span: 2 },
-    { id: 3, src: Mountain5, title: 'Hedysaroides',    location: 'Home',                    span: 2 },
-    { id: 4, src: Mountain3, title: 'Everfresh',       location: 'Home',                    span: 2 },
-    { id: 5, src: Mountain4, title: 'Ocean still',     location: 'Bali',                    span: 2 },
-    { id: 6, src: Mountain2, title: 'Bloom',           location: 'Taiwan',                  span: 2 },
+    { id: 4, src: Mountain3, title: 'Everfresh',       location: 'Home',                    span: 1},
   ];
 
   return (
@@ -407,7 +404,7 @@ const WorkSection = ({ projects }) => {
 
       <div className="projects-section__header">
         <p className="projects-section__label">Selected Work</p>
-        <h2 className="projects-section__title">Projects</h2>
+        <h2 className="projects-section__title"></h2>
       </div>
 
       <div className="filter-bar">
