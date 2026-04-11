@@ -4,9 +4,9 @@ import LHP from './img/LHP-10.png';
 import LS from './img/Comp-1_2.gif';
 import Mountain from './img/1K3A3621.jpg';
 import Mountain1 from './img/1K3A2741.jpg';
-import Mountain2 from './img/1K3A3664.jpg';
+import Mountain2 from './img/1K3A2803.jpg';
 import Mountain3 from './img/1K3A6525.jpg';
-import Mountain4 from './img/1K3A6220.jpg';
+import Mountain4 from './img/1K3A2930.jpg';
 import Mountain5 from './img/1K3A6088.jpg';
 
 import './App.css';
