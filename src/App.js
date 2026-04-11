@@ -490,13 +490,10 @@ const AboutSection = () => {
           <div>
             <h3 style={titleStyle}>About</h3>
             <p style={textStyle}>
-              I'm a graphic designer passionate about creating meaningful visual experiences.
-              With a focus on clean, purposeful design, I help brands communicate their stories
-              through thoughtful visual identity and strategic design solutions.
+              I'm an engineer by training, but the happiest working with visual design and illustrations.
             </p>
             <p style={textStyle}>
-              My work spans across branding, visual identity, print design, and digital experiences.
-              I believe great design should be both beautiful and functional.
+              I take photos sometimes too.
             </p>
           </div>
           <div style={imageWrapperStyle}>
