@@ -4,7 +4,7 @@ import LHP from './img/LHP-10.png';
 import LS from './img/Comp-1_2.gif';
 import Mountain from './img/1K3A3621.jpg';
 import Mountain1 from './img/1K3A2741.jpg';
-import Mountain2 from './img/1K3A5330.jpg';
+import Mountain2 from './img/1K3A3664.jpg';
 import Mountain3 from './img/1K3A6525.jpg';
 import Mountain4 from './img/1K3A6220.jpg';
 import Mountain5 from './img/1K3A6088.jpg';
@@ -307,7 +307,7 @@ const PhotographySection = () => {
     { id: 1, src: Mountain, title: 'Boat',  location: 'Japan',    span: 2 },
     { id: 2, src: Mountain1, title: 'Rose',   location: '1.2816° N, 103.8636° E', span: 2 },
     { id: 3, src: Mountain5, title: 'Hedysaroides', location: 'Home',    span: 2 },
-    { id: 4, src: Mountain3, title: 'Open road',       location: 'Iceland',  span: 2 },
+    { id: 4, src: Mountain3, title: 'Everfresh',       location: 'Home',  span: 2 },
     { id: 5, src: Mountain4, title: 'Ocean still',     location: 'Bali',     span: 2 },
     { id: 6, src: Mountain2 , title: 'Bloom',           location: 'Taiwan',   span: 2 },
   ];
